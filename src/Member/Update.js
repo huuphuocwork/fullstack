@@ -12,7 +12,7 @@ export default function Update() {
 
   useEffect(() => {
     let auth = JSON.parse(localStorage.getItem("auth"));
-    console.log(auth);
+    // console.log(auth);
 
     if (auth) {
       setUser({
@@ -105,49 +105,52 @@ export default function Update() {
   }
 
   return (
-    <div className="col-sm-4">
-      <div className="signup-form">
-        <h2>Update User</h2>
-        <ul>{renderError()}</ul>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            placeholder="User Name"
-            onChange={handleInput}
-          />
-          <input
-            type="text"
-            name="email"
-            value={user.email}
-            placeholder="Email"
-            readOnly
-          />
-          <input
-            type="text"
-            name="address"
-            value={user.address}
-            placeholder="Address"
-            onChange={handleInput}
-          />
-          <input
-            type="text"
-            name="phone"
-            value={user.phone}
-            placeholder="Phone"
-            onChange={handleInput}
-          />
-          <input
-            type="password"
-            name="pass"
-            value={user.pass}
-            placeholder="Password"
-            onChange={handleInput}
-          />
+    <div className="col-sm-9">
+      <div class="blog-post-area">
+        <h2 class="title text-center">Update user</h2>
+        <div className="signup-form">
+          <h2>New User Signup!</h2>
+          <ul>{renderError()}</ul>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              value={user.username}
+              placeholder="User Name"
+              onChange={handleInput}
+            />
+            <input
+              type="text"
+              name="email"
+              value={user.email}
+              placeholder="Email"
+              readOnly
+            />
+            <input
+              type="text"
+              name="address"
+              value={user.address}
+              placeholder="Address"
+              onChange={handleInput}
+            />
+            <input
+              type="text"
+              name="phone"
+              value={user.phone}
+              placeholder="Phone"
+              onChange={handleInput}
+            />
+            <input
+              type="password"
+              name="pass"
+              value={user.pass}
+              placeholder="Password"
+              onChange={handleInput}
+            />
 
-          <button type="submit">Update</button>
-        </form>
+            <button type="submit">Update</button>
+          </form>
+        </div>
       </div>
     </div>
   );

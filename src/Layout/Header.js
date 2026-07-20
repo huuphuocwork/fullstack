@@ -138,9 +138,9 @@ function Header() {
               <div className="shop-menu clearfix pull-right">
                 <ul className="nav navbar-nav">
                   <li>
-                    <a href>
-                      <i className="fa fa-user" /> Account
-                    </a>
+                    <Link to="/member/update">
+                      <i className="fa fa-user"></i> Account
+                    </Link>
                   </li>
                   <li>
                     <a href>
