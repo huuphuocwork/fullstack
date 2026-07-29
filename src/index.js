@@ -9,6 +9,8 @@ import Blogdetail from "./components/Blog-detail";
 import Index from "./Member/Index";
 import Update from "./Member/Update";
 import Home from "./components/Home/Home";
+import Product from "./Member/Product";
+import AddProduct from "./Member/AddProduct";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -20,6 +22,8 @@ root.render(
           <Route path="/blogdetail/:id" element={<Blogdetail />} />
           <Route path="/member/login-register" element={<Index />} />
           <Route path="/member/update" element={<Update />} />
+          <Route path="/member/product" element={<Product />} />
+          <Route path="/member/addproduct" element={<AddProduct />} />
         </Routes>
       </App>
     </BrowserRouter>

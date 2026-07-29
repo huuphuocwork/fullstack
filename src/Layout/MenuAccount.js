@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function MenuAccount() {
   return (
     <div className="col-sm-3">
@@ -20,12 +21,12 @@ export default function MenuAccount() {
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title">
-                <a href="#">
+                <Link to="/member/product">
                   <span className="badge pull-right">
                     <i className="fa fa-plus" />
                   </span>
                   My Product
-                </a>
+                </Link>
               </h4>
             </div>
           </div>
