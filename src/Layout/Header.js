@@ -107,10 +107,10 @@ function Header() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a href>Canada</a>
+                      <a href="#">Canada</a>
                     </li>
                     <li>
-                      <a href>UK</a>
+                      <a href="#">UK</a>
                     </li>
                   </ul>
                 </div>
@@ -125,10 +125,10 @@ function Header() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a href>Canadian Dollar</a>
+                      <a href="#">Canadian Dollar</a>
                     </li>
                     <li>
-                      <a href>Pound</a>
+                      <a href="#">Pound</a>
                     </li>
                   </ul>
                 </div>
@@ -143,7 +143,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <a href>
+                    <a href="#">
                       <i className="fa fa-star" /> Wishlist
                     </a>
                   </li>
@@ -159,7 +159,7 @@ function Header() {
                       <span id="cart_count">0</span>
                     </a>
                   </li>
-                  <li>{renderLogin()}</li>
+                  {renderLogin()}
                 </ul>
               </div>
             </div>

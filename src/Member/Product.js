@@ -83,9 +83,9 @@ export default function Product() {
             </td>
 
             <td className="cart_total">
-              <a href="#">
+              <Link to={"/member/editproduct/" + item.id}>
                 <i className="fa fa-pencil-square-o"></i>
-              </a>
+              </Link>
 
               <a
                 href="#"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Blog() {
   const [data, setData] = useState([]);
   useEffect(() => {
