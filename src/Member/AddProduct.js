@@ -39,8 +39,8 @@ export default function AddProduct() {
 
   function handleFile(e) {
     const getFile = e.target.files;
-    // console.log("Danh sách file", getFile);
-    setAvatar(getFile);
+    console.log("Danh sách file", getFile.length);
+    setAvatar((oldFiles) => [...oldFiles, ...getFile]);
   }
 
   function handleSubmit(e) {
@@ -184,6 +184,24 @@ export default function AddProduct() {
       });
     }
   }
+  function renderPreview() {
+    if (avatar.length > 0) {
+      return Object.keys(avatar).map((item, index) => {
+        let file = avatar[item];
+        let url = URL.createObjectURL(file);
+        return (
+          <img
+            key={index}
+            src={url}
+            alt=""
+            width="70"
+            height="70"
+            style={{ marginRight: "10px" }}
+          />
+        );
+      });
+    }
+  }
   return (
     <div className="col-sm-9">
       <div className="blog-post-area">
@@ -249,6 +267,7 @@ export default function AddProduct() {
               onChange={handleInput}
             />
             <input type="file" name="file" multiple onChange={handleFile} />
+            <div>{renderPreview()}</div>
             <textarea
               name="detail"
               placeholder="Detail"
