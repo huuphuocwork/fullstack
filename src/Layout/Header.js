@@ -91,9 +91,9 @@ function Header() {
           <div className="row">
             <div className="col-md-4 clearfix">
               <div className="logo pull-left">
-                <a href="index.html">
-                  <img src="images/home/logo.png" alt="" />
-                </a>
+                <Link to={"/"}>
+                  <img src="/images/home/logo.png" alt="" />
+                </Link>
               </div>
               <div className="btn-group pull-right clearfix">
                 <div className="btn-group">

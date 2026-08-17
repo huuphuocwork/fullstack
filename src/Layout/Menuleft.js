@@ -24,19 +24,19 @@ function Menuleft() {
               <div className="panel-body">
                 <ul>
                   <li>
-                    <a href>Nike </a>
+                    <a href="#">Nike </a>
                   </li>
                   <li>
-                    <a href>Under Armour </a>
+                    <a href="#">Under Armour </a>
                   </li>
                   <li>
-                    <a href>Adidas </a>
+                    <a href="#">Adidas </a>
                   </li>
                   <li>
-                    <a href>Puma</a>
+                    <a href="#">Puma</a>
                   </li>
                   <li>
-                    <a href>ASICS </a>
+                    <a href="#">ASICS </a>
                   </li>
                 </ul>
               </div>
@@ -57,34 +57,34 @@ function Menuleft() {
               <div className="panel-body">
                 <ul>
                   <li>
-                    <a href>Fendi</a>
+                    <a href="#">Fendi</a>
                   </li>
                   <li>
-                    <a href>Guess</a>
+                    <a href="#">Guess</a>
                   </li>
                   <li>
-                    <a href>Valentino</a>
+                    <a href="#">Valentino</a>
                   </li>
                   <li>
-                    <a href>Dior</a>
+                    <a href="#">Dior</a>
                   </li>
                   <li>
-                    <a href>Versace</a>
+                    <a href="#">Versace</a>
                   </li>
                   <li>
-                    <a href>Armani</a>
+                    <a href="#">Armani</a>
                   </li>
                   <li>
-                    <a href>Prada</a>
+                    <a href="#">Prada</a>
                   </li>
                   <li>
-                    <a href>Dolce and Gabbana</a>
+                    <a href="#">Dolce and Gabbana</a>
                   </li>
                   <li>
-                    <a href>Chanel</a>
+                    <a href="#">Chanel</a>
                   </li>
                   <li>
-                    <a href>Gucci</a>
+                    <a href="#">Gucci</a>
                   </li>
                 </ul>
               </div>
@@ -109,19 +109,19 @@ function Menuleft() {
               <div className="panel-body">
                 <ul>
                   <li>
-                    <a href>Fendi</a>
+                    <a href="#">Fendi</a>
                   </li>
                   <li>
-                    <a href>Guess</a>
+                    <a href="#">Guess</a>
                   </li>
                   <li>
-                    <a href>Valentino</a>
+                    <a href="#">Valentino</a>
                   </li>
                   <li>
-                    <a href>Dior</a>
+                    <a href="#">Dior</a>
                   </li>
                   <li>
-                    <a href>Versace</a>
+                    <a href="#">Versace</a>
                   </li>
                 </ul>
               </div>
@@ -184,43 +184,43 @@ function Menuleft() {
           <div className="brands-name">
             <ul className="nav nav-pills nav-stacked">
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(50)</span>Acne
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(56)</span>Grüne Erde
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(27)</span>Albiro
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(32)</span>Ronhill
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(5)</span>Oddmolly
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(9)</span>Boudestijn
                 </a>
               </li>
               <li>
-                <a href>
+                <a href="#">
                   {" "}
                   <span className="pull-right">(4)</span>Rösch creative culture
                 </a>
