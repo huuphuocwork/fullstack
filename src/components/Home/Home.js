@@ -48,6 +48,10 @@ export default function Home() {
                   <h2>${item.price}</h2>
                   <p>{item.name}</p>
                   <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      AddToCart(item.id);
+                    }}
                     href="#"
                     id={"product" + item.id} // Tạo id riêng cho từng nút, để sau này có thể bắt sự kiện theo đúng sản phẩm
                     className="btn btn-default add-to-cart"
@@ -59,7 +63,14 @@ export default function Home() {
                   <div className="overlay-content">
                     <h2>${item.price}</h2>
                     <p>{item.name}</p>
-                    <a href="#" className="btn btn-default add-to-cart">
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        AddToCart(item.id);
+                      }}
+                      href="#"
+                      className="btn btn-default add-to-cart"
+                    >
                       <i className="fa fa-shopping-cart"></i>Add to cart
                     </a>
                   </div>
@@ -87,6 +98,33 @@ export default function Home() {
       });
     }
   }
+  // Hàm xử lý khi bấm nút "Add to cart" trên 1 sản phẩm, nhận vào id của sản phẩm đó
+  function AddToCart(id) {
+    // Đọc giỏ hàng hiện tại từ localStorage (dữ liệu lưu ở đây chỉ tồn tại dạng CHUỖI,
+    // nên phải JSON.parse() để biến lại thành object thật)
+    // Nếu localStorage chưa có key "cart" (VD: khách vào lần đầu) -> getItem trả về null
+    // -> JSON.parse(null) = null -> dùng "|| {}" để thay bằng object rỗng, tránh lỗi
+    const cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+    console.log(localStorage.getItem("cart")); // log giỏ hàng TRƯỚC khi cập nhật, để kiểm tra
+
+    // Kiểm tra sản phẩm này đã có trong giỏ chưa
+    if (cart[id]) {
+      // Nếu đã có -> tăng số lượng (qty) lên 1
+      cart[id] = cart[id] + 1;
+    } else {
+      // Nếu chưa có -> thêm mới vào giỏ với số lượng là 1
+      cart[id] = 1;
+    }
+
+    // Ghi lại giỏ hàng vào localStorage
+    // Bắt buộc phải JSON.stringify() vì localStorage CHỈ lưu được chuỗi (string),
+    // không lưu trực tiếp được object như cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    console.log(cart); // log giỏ hàng SAU khi cập nhật, để kiểm tra đã tăng đúng chưa
+  }
+
   return (
     <div className="features_items">
       <h2 className="title text-center">Features Items</h2>

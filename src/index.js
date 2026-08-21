@@ -13,6 +13,7 @@ import Product from "./Member/Product";
 import AddProduct from "./Member/AddProduct";
 import EditProduct from "./Member/EditProduct";
 import ProductDetail from "./components/ProductDetail";
+import Cart from "./components/Cart";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -28,6 +29,7 @@ root.render(
           <Route path="/member/addproduct" element={<AddProduct />} />
           <Route path="/member/editproduct/:id" element={<EditProduct />} />
           <Route path="/productdetail/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </App>
     </BrowserRouter>
