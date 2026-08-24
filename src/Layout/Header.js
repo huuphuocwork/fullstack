@@ -153,11 +153,10 @@ function Header() {
                     </a>
                   </li>
                   <li>
-                    <a id="icon_cart" href="cart.html">
+                    <Link id="icon_cart" to="/cart">
                       <i className="fa fa-shopping-cart" />
                       Cart
-                      <span id="cart_count">0</span>
-                    </a>
+                    </Link>
                   </li>
                   {renderLogin()}
                 </ul>
