@@ -1,10 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../CartContext";
+import { useDispatch } from "react-redux";
+import { capNhatTongQty } from "../../cartSlice";
 
 export default function Home() {
   // Lưu danh sách all sản phẩm
   const [productData, setProductData] = useState([]);
+  const { setCartCount } = useContext(CartContext);
+  const dispatch = useDispatch();
   // Chạy khi mở trang Home
   useEffect(() => {
     axios
@@ -123,6 +128,18 @@ export default function Home() {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     console.log(cart); // log giỏ hàng SAU khi cập nhật, để kiểm tra đã tăng đúng chưa
+
+    // / Đếm TỔNG số lượng tất cả sản phẩm trong giỏ (cộng dồn cart[id], không phải đếm số loại sản phẩm)
+    let total = 0;
+    // for...in: duyệt qua từng KEY (id) của object "cart" - khác với vòng for thường (duyệt theo index của mảng)
+    // vì "cart" là OBJECT dạng {id: qty}, không phải mảng, nên không dùng .map()/for(i=0...) được
+    for (let id in cart) {
+      total = total + cart[id]; // cart[id] chính là qty của sản phẩm -> cộng dồn vào total
+    }
+    // Cập nhật vào Context -> component nào đang useContext(CartContext)
+    setCartCount(total);
+    // Cập nhật vào RTK store -> component nào đang useSelector(state => state.cart.totalQty)
+    dispatch(capNhatTongQty());
   }
 
   return (

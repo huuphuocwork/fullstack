@@ -1,9 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../CartContext";
+import { useDispatch } from "react-redux";
+import { capNhatTongQty } from "../cartSlice";
 
 export default function Cart() {
   // Danh sách sản phẩm ĐẦY ĐỦ thông tin (name, price, image...) lấy về từ API
   const [cartData, setCartData] = useState([]);
+  // Lấy hàm setCartCount từ CartContext -> dùng để cập nhật số lượng lên Header (icon Cart)
+  // mà không cần truyền qua props, vì Header và Cart không phải quan hệ cha-con
+  const { setCartCount } = useContext(CartContext);
+  // Lấy hàm dispatch từ RTK -> dùng để gửi lệnh cập nhật totalQty trong store (song song với Context)
+  const dispatch = useDispatch();
 
   // Đọc giỏ hàng thô từ localStorage: dạng {id: qty, id: qty...}
   // Đây là dữ liệu sẽ GỬI LÊN API để đổi lấy thông tin đầy đủ từng sản phẩm
@@ -41,6 +49,17 @@ export default function Cart() {
     cart[id] = cart[id] + 1;
     // localStorage: ghi đè lại -> lưu lâu dài, F5 không bị mất (nếu thiếu bước này, F5 sẽ reset về số cũ)
     localStorage.setItem("cart", JSON.stringify(cart));
+    // / Đếm TỔNG số lượng tất cả sản phẩm trong giỏ (cộng dồn cart[id], không phải đếm số loại sản phẩm)
+    let total = 0;
+    // for...in: duyệt qua từng KEY (id) của object "cart" - khác với vòng for thường (duyệt theo index của mảng)
+    // vì "cart" là OBJECT dạng {id: qty}, không phải mảng, nên không dùng .map()/for(i=0...) được
+    for (let id in cart) {
+      total = total + cart[id]; // cart[id] chính là qty của sản phẩm -> cộng dồn vào total
+    }
+    // Cập nhật vào Context -> component nào đang useContext(CartContext)
+    setCartCount(total);
+    // Cập nhật vào RTK store -> component nào đang useSelector(state => state.cart.totalQty)
+    dispatch(capNhatTongQty());
   }
 
   // Giảm qty 1 sản phẩm, giống hàm tang() nhưng có chặn không cho xuống dưới 0
@@ -64,6 +83,17 @@ export default function Cart() {
     }
     // localStorage: ghi đè lại sau khi giảm
     localStorage.setItem("cart", JSON.stringify(cart));
+    // / Đếm TỔNG số lượng tất cả sản phẩm trong giỏ (cộng dồn cart[id], không phải đếm số loại sản phẩm)
+    let total = 0;
+    // for...in: duyệt qua từng KEY (id) của object "cart" - khác với vòng for thường (duyệt theo index của mảng)
+    // vì "cart" là OBJECT dạng {id: qty}, không phải mảng, nên không dùng .map()/for(i=0...) được
+    for (let id in cart) {
+      total = total + cart[id]; // cart[id] chính là qty của sản phẩm -> cộng dồn vào total
+    }
+    // Cập nhật vào Context -> component nào đang useContext(CartContext)
+    setCartCount(total);
+    // Cập nhật vào RTK store -> component nào đang useSelector(state => state.cart.totalQty)
+    dispatch(capNhatTongQty());
   }
 
   // Xoá hẳn 1 sản phẩm khỏi giỏ - dùng filter() (loại bỏ phần tử) thay vì map() (giữ nguyên số lượng phần tử)
@@ -77,6 +107,17 @@ export default function Cart() {
     delete cart[id]; // xoá hẳn key, khác với gán = 0
     // localStorage: ghi đè lại sau khi xoá key
     localStorage.setItem("cart", JSON.stringify(cart));
+    //  Đếm TỔNG số lượng tất cả sản phẩm trong giỏ (cộng dồn cart[id], không phải đếm số loại sản phẩm)
+    let total = 0;
+    // for...in: duyệt qua từng KEY (id) của object "cart" - khác với vòng for thường (duyệt theo index của mảng)
+    // vì "cart" là OBJECT dạng {id: qty}, không phải mảng, nên không dùng .map()/for(i=0...) được
+    for (let id in cart) {
+      total = total + cart[id]; // cart[id] chính là qty của sản phẩm -> cộng dồn vào total
+    }
+    // Cập nhật vào Context -> component nào đang useContext(CartContext)
+    setCartCount(total);
+    // Cập nhật vào RTK store -> component nào đang useSelector(state => state.cart.totalQty)
+    dispatch(capNhatTongQty());
   }
 
   // Gom thành tiền (giá x qty) từng sản phẩm vào 1 mảng, rồi cộng dồn ra tổng tiền

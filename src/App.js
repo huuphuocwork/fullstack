@@ -3,11 +3,26 @@ import Footer from "./Layout/Footer";
 import Menuleft from "./Layout/Menuleft";
 import MenuAccount from "./Layout/MenuAccount";
 import { useLocation } from "react-router-dom";
+import { CartContext } from "./CartContext";
+import { useState } from "react";
+// Tính tổng qty từ localStorage -> dùng làm giá trị KHỞI TẠO cho cartCount,
+// để F5 không bị mất số (thay vì luôn bắt đầu từ 0)
+function tinhTongQty() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || {};
+  let total = 0;
+  for (let id in cart) {
+    total = total + cart[id];
+  }
+  return total;
+}
+
 function App(props) {
   let location = useLocation();
   // console.log(location);
+  // Truyền tên hàm (kh gọi ()) -> React tự gọi 1 lần lúc khởi tạo để lấy giá trị ban đầu
+  const [cartCount, setCartCount] = useState(tinhTongQty);
   return (
-    <>
+    <CartContext.Provider value={{ cartCount, setCartCount }}>
       <Header />
 
       {/* Hiển thị slider  */}
@@ -155,7 +170,7 @@ function App(props) {
       </section>
 
       <Footer />
-    </>
+    </CartContext.Provider>
   );
 }
 

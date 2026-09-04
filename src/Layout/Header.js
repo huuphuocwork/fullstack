@@ -1,8 +1,18 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { CartContext } from "../CartContext";
+import { useSelector } from "react-redux";
 function Header() {
+  // Lấy cartCount từ Context -> không cần Cart.js truyền qua props (2 file này không phải cha-con)
+  const { cartCount } = useContext(CartContext);
+  // console.log(cartCount);
+  // Đọc totalQty từ RTK store -> hiển thị lên link checkout
+  const totalQty = useSelector((state) => state.cart.totalQty);
   const navigate = useNavigate();
 
+  // Quyết định hiển thị nút Login hay Logout tuỳ đã đăng nhập hay chưa
   function renderLogin() {
+    // Đọc trực tiếp localStorage (chưa dùng Context, vẫn giữ cách cũ)
     const localAuth = localStorage.getItem("auth");
     if (localAuth) {
       return (
@@ -24,14 +34,14 @@ function Header() {
   }
 
   function handleLogout() {
-    localStorage.clear();
+    localStorage.clear(); // xoá sạch localStorage (auth, cart...) khi đăng xuất
     navigate("/member/login-register");
   }
   return (
     <header id="header">
       {/*header*/}
       <div className="header_top">
-        {/*header_top*/}
+        {/*header_top - thanh trên cùng: SĐT, email, mạng xã hội*/}
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
@@ -86,7 +96,7 @@ function Header() {
       </div>
       {/*/header_top*/}
       <div className="header-middle">
-        {/*header-middle*/}
+        {/*header-middle - logo + dropdown USA/DOLLAR + menu Account/Wishlist/Cart/Login*/}
         <div className="container">
           <div className="row">
             <div className="col-md-4 clearfix">
@@ -148,14 +158,17 @@ function Header() {
                     </a>
                   </li>
                   <li>
-                    <a href="checkout.html">
+                    <Link to="/checkout">
                       <i className="fa fa-crosshairs" /> Checkout
-                    </a>
+                      <span> {totalQty}</span>
+                    </Link>
                   </li>
                   <li>
                     <Link id="icon_cart" to="/cart">
                       <i className="fa fa-shopping-cart" />
                       Cart
+                      {/* Lấy trực tiếp từ Context - không cần Cart.js truyền qua props */}
+                      <span id="cart_count"> {cartCount}</span>
                     </Link>
                   </li>
                   {renderLogin()}
@@ -167,7 +180,7 @@ function Header() {
       </div>
       {/*/header-middle*/}
       <div className="header-bottom">
-        {/*header-bottom*/}
+        {/*header-bottom - menu chính: Home/Shop/Blog... + ô search*/}
         <div className="container">
           <div className="row">
             <div className="col-sm-9">

@@ -14,25 +14,31 @@ import AddProduct from "./Member/AddProduct";
 import EditProduct from "./Member/EditProduct";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import Checkout from "./components/Checkout";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blogdetail/:id" element={<Blogdetail />} />
-          <Route path="/member/login-register" element={<Index />} />
-          <Route path="/member/update" element={<Update />} />
-          <Route path="/member/product" element={<Product />} />
-          <Route path="/member/addproduct" element={<AddProduct />} />
-          <Route path="/member/editproduct/:id" element={<EditProduct />} />
-          <Route path="/productdetail/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </App>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blogdetail/:id" element={<Blogdetail />} />
+            <Route path="/member/login-register" element={<Index />} />
+            <Route path="/member/update" element={<Update />} />
+            <Route path="/member/product" element={<Product />} />
+            <Route path="/member/addproduct" element={<AddProduct />} />
+            <Route path="/member/editproduct/:id" element={<EditProduct />} />
+            <Route path="/productdetail/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </App>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
 );
 {

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -11,6 +12,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-multi-carousel": "^2.8.6",
+    "react-redux": "^9.3.0",
     "react-router-dom": "^7.15.0",
     "react-scripts": "5.0.1",
     "react-simple-star-rating": "^5.1.7",
