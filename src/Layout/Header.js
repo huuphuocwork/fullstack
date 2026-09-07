@@ -153,9 +153,9 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <i className="fa fa-star" /> Wishlist
-                    </a>
+                    <Link to="/wishlist">
+                      <i className="fa fa-user"></i> Wishlist
+                    </Link>
                   </li>
                   <li>
                     <Link to="/checkout">

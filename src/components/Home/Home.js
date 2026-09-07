@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../CartContext";
 import { useDispatch } from "react-redux";
 import { capNhatTongQty } from "../../cartSlice";
+import { capnhatWishlist } from "../../wishlistSlice";
 
 export default function Home() {
   // Lưu danh sách all sản phẩm
@@ -85,7 +86,13 @@ export default function Home() {
               <div className="choose">
                 <ul className="nav nav-pills nav-justified">
                   <li>
-                    <a href="#">
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        AddToWishlist(item.id);
+                      }}
+                      href="#"
+                    >
                       <i className="fa fa-plus-square"></i>Add to wishlist
                     </a>
                   </li>
@@ -140,6 +147,25 @@ export default function Home() {
     setCartCount(total);
     // Cập nhật vào RTK store -> component nào đang useSelector(state => state.cart.totalQty)
     dispatch(capNhatTongQty());
+  }
+
+  // Hàm xử lý khi bấm nút "Add to wishlist" trên 1 sản phẩm, nhận vào id của sản phẩm đó
+  function AddToWishlist(id) {
+    // Đọc danh sách wishlist hiện tại từ localStorage (mảng các id), nếu chưa có thì để mảng rỗng
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    // Chỉ thêm khi id NÀY CHƯA CÓ trong danh sách - tránh bấm nhiều lần bị trùng lặp id
+    if (!wishlist.includes(id)) {
+      wishlist.push(id); // Thêm id mới vào cuối mảng
+
+      // Ghi lại vào localStorage - phải JSON.stringify() vì localStorage chỉ lưu được chuỗi
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+      // Báo cho RTK biết localStorage vừa đổi -> wishlistSlice đọc lại và cập nhật state.ids
+      // -> mọi component đang useSelector(state => state.wishlist.ids) tự vẽ lại theo dữ liệu mới,
+      // không cần F5 (giống cách Header tự cập nhật cartCount trước đây)
+      dispatch(capnhatWishlist());
+    }
   }
 
   return (

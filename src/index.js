@@ -17,6 +17,7 @@ import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Checkout from "./components/Checkout";
+import Wishlist from "./components/Wishlist";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -35,6 +36,7 @@ root.render(
             <Route path="/productdetail/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Routes>
         </App>
       </BrowserRouter>
